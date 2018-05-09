@@ -55,6 +55,31 @@
 		}
 		return $response;
 	}
+	//view asset descriptions
+	public function viewDescriptions() {
+		//connect to MongoDB
+		require_once '/var/www/html/it635/vendor/autoload.php';
+		$mongo = (new MongoDB\Client("mongodb://root:it635password@ds151153.mlab.com:51153/it635"))->it635->descriptions;
+		//return array with descriptions
+		$cursor = $mongo->find();
+		$response = iterator_to_array($cursor);
+		return $response;
+	}
+	//add description to mongo
+	public function addDescription($name, $i1, $d1, $i2, $d2, $i3, $d3) {
+		//connect to MongoDB
+                require_once '/var/www/html/it635/vendor/autoload.php';
+                $mongo = (new MongoDB\Client("mongodb://root:it635password@ds151153.mlab.com:51153/it635"))->it635->descriptions;
+		//add specified document to database
+		$doc = array(
+			"name" => "$name",
+			"$i1"  => "$d1",
+			"$i2"  => "$d2",
+			"$i3"  => "$d3"
+		);
+		$mongo->insertOne($doc);
+		return "Description successfully added!";
+	}
 	//add asset to database
 	public function addAsset($assetName, $assetOwner, $currentOwner, $condition, $note) {
 		if ($_SESSION["login"] != 2) { die("Insufficient permissions for operation!"); }
@@ -63,7 +88,7 @@
 		$curr = $this->db->real_escape_string($currentOwner);
 		$assetCondition = $this->db->real_escape_string($condition);
 		$notes = $this->db->real_escape_string($note);
-		$query = "INSERT INTO assets (name, owner, curr, assetCondition, notes) VALUES ('$name', '$owner', '$curr', '$assetCondition', '$notes');";
+		$query = "CALL addAsset('$name', '$owner', '$curr', '$assetCondition', '$notes');"; //call to stored procedure
 		if(!$queryResponse = $this->db->query($query)) {
 			return "Error adding asset to database!";
         } else {

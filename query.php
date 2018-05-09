@@ -16,6 +16,8 @@ $arg3 = $_GET["arg3"];
 $arg4 = $_GET["arg4"];
 $arg5 = $_GET["arg5"];
 $arg6 = $_GET["arg6"];
+$arg7 = $_GET["arg7"];
+$arg8 = $_GET["arg8"];
 
 switch ($arg1) {
 	case "va": //view assets
@@ -78,6 +80,21 @@ switch ($arg1) {
 		break;
 	case "mr": //manage request
 		$response = $db->manageRequest($arg2, $arg3);
+		echo($response);
+		break;
+	case "vd": //view descriptions
+		$response = $db->viewDescriptions();
+		echo "<pre>";
+		print_r($response);
+		echo "</pre>";
+		/*
+		foreach($response[0] as $child) {
+   			echo (key($child) . " - " . $child . "<br>");
+		}
+		*/
+		break;
+	case "ad": //add description
+		$response = $db->addDescription($arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8);
 		echo($response);
 		break;
 	case "lo": //log out

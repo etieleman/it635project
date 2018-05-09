@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.21, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.22, for Linux (x86_64)
 --
 -- Host: localhost    Database: it635
 -- ------------------------------------------------------
--- Server version	5.7.21-0ubuntu0.16.04.1
+-- Server version	5.7.22-0ubuntu0.16.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -42,7 +42,7 @@ CREATE TABLE `assets` (
   KEY `curr` (`curr`),
   CONSTRAINT `assets_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `employees` (`eid`) ON DELETE CASCADE,
   CONSTRAINT `assets_ibfk_2` FOREIGN KEY (`curr`) REFERENCES `employees` (`eid`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10008 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10014 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,7 +51,7 @@ CREATE TABLE `assets` (
 
 LOCK TABLES `assets` WRITE;
 /*!40000 ALTER TABLE `assets` DISABLE KEYS */;
-INSERT INTO `assets` VALUES (10001,'Dell Optiplex 2000','ert4','rps9','Okay',NULL),(10002,'Cisco Phone 300','ert4','rps9','Okay',NULL),(10003,'Samsung Galaxy Note 2','fmg10','storage','New',NULL),(10004,'Dell Optiplex 2000','fmg10','lol6','Poor',NULL),(10005,'Cisco Phone 300','ert4','storage','Broken','No longer working'),(10006,'Wacom Tablet','ert4','retired','Broken','Broken, retired'),(10007,'Asus UltraView Monitor','fmg10','storage','New','144hz for gaming!');
+INSERT INTO `assets` VALUES (10001,'Dell Optiplex 2000','ert4','rps9','Okay',NULL),(10002,'Cisco Phone 300','ert4','rps9','Okay',NULL),(10003,'Samsung Galaxy Note 2','fmg10','storage','New',NULL),(10004,'Dell Optiplex 2000','fmg10','lol6','Poor',NULL),(10005,'Cisco Phone 300','ert4','lol6','Broken','No longer working'),(10006,'Wacom Tablet','ert4','retired','Broken','Broken, retired'),(10007,'Asus UltraView Monitor','fmg10','storage','New','144hz for gaming!'),(10008,'Dell Optiplex','fmg10','retired','Okay','For useing'),(10009,'ReplicationTest','fmg10','fmg10','Good','For testing'),(10010,'TestAsset2','fmg10','retired','Okay','testing 2'),(10011,'ProcTest','fmg10','retired','Okay','Procedure Test'),(10012,'WebProcTest','fmg10','fmg10','Good','Web procedure test');
 /*!40000 ALTER TABLE `assets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -103,7 +103,7 @@ CREATE TABLE `requests` (
   KEY `aid` (`aid`),
   CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`eid`) REFERENCES `employees` (`eid`) ON DELETE CASCADE,
   CONSTRAINT `requests_ibfk_2` FOREIGN KEY (`aid`) REFERENCES `assets` (`aid`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=20008 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20009 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,7 +112,7 @@ CREATE TABLE `requests` (
 
 LOCK TABLES `requests` WRITE;
 /*!40000 ALTER TABLE `requests` DISABLE KEYS */;
-INSERT INTO `requests` VALUES (20001,'rps9',10001,'Use','Approved','2018-03-01 12:00:00','2018-03-11 14:00:00','Need PC to do work'),(20002,'rps9',10002,'Use','Approved','2018-03-01 12:10:00','2018-03-11 14:10:00','Need phone for calls'),(20003,'lol6',10006,'Retirement','Approved','2018-03-03 08:00:00','2018-03-04 19:00:00','Device is broken'),(20004,'lol6',NULL,'Purchase','Open','2018-03-05 12:00:00',NULL,'Need a powerful desktop for rendering work'),(20005,'rps9',NULL,'Purchase','Denied','2018-03-06 14:00:00','2018-03-15 14:10:00','Unlimited snack bar for the office'),(20006,'rps9',10007,'Retirement','Open','2018-03-08 19:00:00',NULL,'Waste of budget; we need to return this'),(20007,'lol6',10003,'Use','Open','2018-03-07 11:00:00',NULL,'Need a cell phone for attending conferences');
+INSERT INTO `requests` VALUES (20001,'rps9',10001,'Use','Approved','2018-03-01 12:00:00','2018-03-11 14:00:00','Need PC to do work'),(20002,'rps9',10002,'Use','Approved','2018-03-01 12:10:00','2018-03-11 14:10:00','Need phone for calls'),(20003,'lol6',10006,'Retirement','Approved','2018-03-03 08:00:00','2018-03-04 19:00:00','Device is broken'),(20004,'lol6',NULL,'Purchase','Open','2018-03-05 12:00:00',NULL,'Need a powerful desktop for rendering work'),(20005,'rps9',NULL,'Purchase','Denied','2018-03-06 14:00:00','2018-03-15 14:10:00','Unlimited snack bar for the office'),(20006,'rps9',10007,'Retirement','Open','2018-03-08 19:00:00',NULL,'Waste of budget; we need to return this'),(20007,'lol6',10003,'Use','Open','2018-03-07 11:00:00',NULL,'Need a cell phone for attending conferences'),(20008,'lol6',10005,'Use','Approved','2018-04-05 00:01:49','2018-04-05 00:02:43','I need a phone');
 /*!40000 ALTER TABLE `requests` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -125,4 +125,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-21 19:26:08
+-- Dump completed on 2018-05-09 20:06:11

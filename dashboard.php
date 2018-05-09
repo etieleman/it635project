@@ -24,14 +24,14 @@ $_SESSION["eid"] = $_POST["eid"];
 </style>
 <script type="text/javascript">
 	//ajax for query.php; takes arguments to determine desired query/function
-	function query(arg1, arg2, arg3, arg4, arg5, arg6) {
+	function query(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8) {
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				document.getElementById("content").innerHTML = this.responseText;
 			}
 		};
-		xhttp.open("GET", "./query.php?arg1=" + arg1 + "&arg2=" + arg2 + "&arg3=" + arg3 + "&arg4=" + arg4 + "&arg5=" + arg5 + "&arg6=" + arg6, true);
+		xhttp.open("GET", "./query.php?arg1=" + arg1 + "&arg2=" + arg2 + "&arg3=" + arg3 + "&arg4=" + arg4 + "&arg5=" + arg5 + "&arg6=" + arg6 + "&arg7=" + arg7 + "&arg8=" + arg8, true);
 		xhttp.send();
 		if (arg1 == "lo") {
 			window.location.href = './index.html'; //go to login page
@@ -81,6 +81,22 @@ $_SESSION["eid"] = $_POST["eid"];
 		"<label for='aid'>Asset ID</label>" +
         "<input name='aid' id='aid' type=text required><br>" +
 		"<button type='button' onClick='query(\"ra\", document.getElementById(\"aid\").value)'>Submit</button>";
+		"</fieldset>";
+	}
+	//generate form for adding descriptions
+	function descriptionForm() {
+		document.getElementById("content").innerHTML =
+                "<h3>Add Item Description</h3>" +
+                "<fieldset>" +
+		"<label for='dname'>Asset Name</label>" +
+		"<input name='dname' id='dname' type=text required><br>" +
+		"<input name='label1' id='label1' type=text required>" +
+		"<input name='descr1' id='descr1' type=text required><br>" +
+		"<input name='label2' id='label2' type=text required>" +
+                "<input name='descr2' id='descr2' type=text required><br>" +
+		"<input name='label3' id='label3' type=text required>" +
+                "<input name='descr3' id='descr3' type=text required><br>" +
+		"<button type='button' onClick='query(\"ad\", document.getElementById(\"dname\").value, document.getElementById(\"label1\").value, document.getElementById(\"descr1\").value, document.getElementById(\"label2\").value, document.getElementById(\"descr2\").value, document.getElementById(\"label3\").value, document.getElementById(\"descr3\").value)'>Submit</button>" +
 		"</fieldset>";
 	}
 
@@ -159,6 +175,8 @@ $_SESSION["eid"] = $_POST["eid"];
 		"<button type='button' onClick='query(\"vr\")'>View Requests</button>" +
 		"<button type='button' onClick='manageRequestForm()'>Manage Requests</button>" +
 		"<button type='button' onClick='manageForm()'>Manage Equipment</button>" +
+		"<button type='button' onclick='query(\"vd\")'>View Descriptions</button>" +
+		"<button type='button' onClick='descriptionForm()'>Add Descriptions</button>" +
 		"<button type='button' onClick='query(\"lo\")'>Log Out</button>" +
 		"<br><hr>";
 		document.getElementById("content").innerHTML =
